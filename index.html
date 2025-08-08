@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Us? 💫</title>
+    <meta name="description" content="A tiny magical question with a big heart." />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&family=Great+Vibes&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles/style.css" />
+  </head>
+  <body>
+    <noscript>
+      <div class="no-js">This site needs a little JavaScript magic ✨ Please enable JS.</div>
+    </noscript>
+
+    <!-- FX canvas for sparkles / confetti -->
+    <canvas id="fx-canvas" aria-hidden="true"></canvas>
+
+    <main id="app" class="app">
+      <div id="preview-banner" class="banner">I kinda prepared this for you… but it is what it is! So here’s a tiny preview </div>
+      <!-- Stage 1: The question with the blank -->
+      <section id="stage1" class="stage active" aria-labelledby="q-label">
+        <div class="card">
+          <h1 id="q-label" class="title">Do you mind being my <span class="blank">__________</span> forever?</h1>
+          <p class="subtitle">Fill the blank and hit enter</p>
+
+          <form id="answer-form" class="answer-row" autocomplete="off">
+            <input id="answer-input" name="answer" class="input" placeholder="type here..." maxlength="24" />
+            <button class="btn primary" type="submit" aria-label="Submit answer">Submit</button>
+          </form>
+          <p class="hint">Psst... be honest. I can take it (mostly). 😉</p>
+        </div>
+      </section>
+
+      <!-- Stage 2: Valid answer, ask Yes/No -->
+      <section id="stage2" class="stage" aria-live="polite">
+        <div class="card">
+          <h2 class="title">Nice choice! 💖</h2>
+          <p class="subtitle">Words that would have worked too:</p>
+          <div id="good-words" class="chips"></div>
+          <p class="title small" id="confirm-line">So... will you be my <span class="accent" id="chosen-word">partner</span>?</p>
+          <div class="choices">
+            <button id="yes-btn" class="btn success">Yes</button>
+            <button id="no-btn" class="btn danger">No</button>
+          </div>
+        </div>
+      </section>
+
+      <!-- Stage 3: Congrats + product style profile -->
+      <section id="stage3" class="stage" aria-live="polite">
+        <div class="card product">
+          <h2 class="title">Congratulations! 🎉</h2>
+          <p class="subtitle soft">See, I definitely knew you're gonna click this 😌</p>
+          <p class="subtitle">
+            You just unlocked a little preview of <span class="accent" id="person-name">Abijith</span>.
+          </p>
+
+          <div class="product-grid">
+            <div class="gallery">
+              <img id="main-photo" src="assets/photo-1.jpg" alt="Photo of Abijith" onerror="this.src='https://placehold.co/500x500?text=Your+Photo+Here'" />
+              <div class="thumbs">
+                <img class="thumb" src="assets/photo-1.jpg" alt="Photo 1" onerror="this.src='https://placehold.co/80x80'" />
+                <img class="thumb" src="assets/photo-2.jpg" alt="Photo 2" onerror="this.src='https://placehold.co/80x80'" />
+                <img class="thumb" src="assets/photo-3.jpg" alt="Photo 3" onerror="this.src='https://placehold.co/80x80'" />
+              </div>
+            </div>
+
+            <div class="details">
+              <h3 class="product-title">Limited Edition: <span id="product-title-name">Abijith</span> — Model 1.0</h3>
+              <ul class="features" id="features-list">
+                <li>Certified good listener 🫶</li>
+                <li>Your cure to panic attacks 🌤️</li>
+                <li>Unlimited bad jokes (sorry in advance) 😅</li>
+                <li>Warm hugs on demand 🤗</li>
+                <li>Tech support 24/7 (coffee required) ☕</li>
+              </ul>
+
+              <div class="purchase">
+                <span class="price">₹0.00</span>
+                <button class="btn purchased" disabled>Preview unlocked ✅</button>
+                <div class="guarantee">Beta build. Side effects may include smiling at random. 🙂</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="celebrate-note">If you’re smiling right now, the warranty has already started 💫</div>
+
+          <div style="margin-top:14px; display:flex; gap:12px; flex-wrap:wrap;">
+            <button id="know-more-btn" class="btn primary">Click to know more</button>
+          </div>
+        </div>
+      </section>
+
+      <!-- Stage 4: Detailed product description -->
+      <section id="stage4" class="stage" aria-live="polite">
+        <div class="card">
+          <h2 class="title">More about <span class="accent">Abijith</span></h2>
+          <p class="subtitle">A few extra specs, just for you ✨</p>
+
+          <div class="product-grid">
+            <div class="details" style="grid-column: span 2;">
+              <h3 class="product-title">Highlights</h3>
+              <ul class="features">
+                <li>Loves quality time and long walks</li>
+                <li>Remembers tiny details (dangerously good memory)</li>
+                <li>Will hype you up on your toughest days</li>
+                <li>Believes “we” beats “me”</li>
+              </ul>
+
+              <h3 class="product-title">Care & Maintenance</h3>
+              <ul class="features">
+                <li>Refuels with coffee and your smile</li>
+                <li>Works best after hugs</li>
+                <li>Extremely compatible with movie nights</li>
+              </ul>
+            </div>
+          </div>
+
+          <div style="margin-top:10px; display:flex; gap:12px; flex-wrap:wrap;">
+            <button id="back-to-celebration" class="btn success">Back to celebration</button>
+          </div>
+        </div>
+      </section>
+
+      <div id="toast" class="toast" aria-live="polite" aria-atomic="true"></div>
+      <div id="loader" class="loader hidden" aria-hidden="true">
+        <div class="loader-card">
+          <div class="spinner"></div>
+          <div class="loader-text">Processing purchase…</div>
+        </div>
+      </div>
+    </main>
+
+    <script src="scripts/main.js"></script>
+  </body>
+  </html>
